@@ -5,42 +5,44 @@
 
 <center>
     <h1 id = title>Black Jack</h1>
-    <h1 id = "player-dealer-titles">Dealer Cards</h1>
-        <p >
-            {%if playerStands == True%} 
-                {%for card in dealer_cards %}
-                    <img src="static/cards/{{ card[-1][-1] }}"/>
-                {% endfor %}
-            {%else%}
-                <img src="static/cards/{{ dealer_cards[0][-1][-1] }}"/>
-                <img src="{{hiddenCard}}"/> 
-            {%endif%}
 
-            
-            <h3 id = "total">Dealer Total: {{ dealer_total }}</h3>
-        </p>
-    
-    
-  
-    <h1 id  = "player-dealer-titles">Player Cards</h1>
-        <p >
-        {% for card in player_cards %}
-            <img src="static/cards/{{ card[-1][-1] }}"/>
-        {% endfor %}
-        </p>
+    <div id = "dealerUpdate">
+        <h1 id = "player-dealer-titles">Dealer Cards</h1>
+            <p >
+                {%if playerStands == True%} 
+                    {%for card in dealer_cards %}
+                        <img src="static/cards/{{ card[-1][-1] }}"/>
+                    {% endfor %}
+                {%else%}
+                    <img src="static/cards/{{ dealer_cards[0][-1][-1] }}"/>
+                    <img src="{{hiddenCard}}"/> 
+                {%endif%}
 
-        
+                
+                <h3 id = "total">Dealer Total: {{ dealer_total }}</h3>
+            </p>
+    </div>
+    
+    <div id = "playerUpdate">
+        <h1 id  = "player-dealer-titles">Player Cards</h1>
+            <p >
+            {% for card in player_cards %}
+                <img src="static/cards/{{ card[-1][-1] }}"/>
+            {% endfor %}
+            </p>
+    
         <h3 id = "total">{{ player_total }}</h3>
+    </div>
 
         <!-- <p >
             <img id = "deck"  src = "static/cards/back.png"/>
         </p> -->
         
 
-        <form hx-post="/stand" hx-target="body">
+        <form hx-post="/stand" hx-target="dealerUpdate">
             <input  id = "button" type="submit" value="Stand"/>
         </form>
-        <form hx-post="/hit" hx-target="body">
+        <form hx-post="/hit" hx-target="playerUpdate">
             <input id = "button" type="submit" value="Hit"/>
         </form>
         <form hx-post="/restart" hx-target="body" >
