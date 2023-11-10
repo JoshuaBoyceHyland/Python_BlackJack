@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<center>
+    <h1 id = title>Black Jack</h1>
+    <h1 id = "player-dealer-titles">Dealer Cards</h1>
+        <p >
+            {%if playerStands == True%} 
+                {%for card in dealer_cards %}
+                    <img src="static/cards/{{ card[-1][-1] }}"/>
+                {% endfor %}
+            {%else%}
+                <img src="static/cards/{{ dealer_cards[0][-1][-1] }}"/>
+                <img src="{{hiddenCard}}"/> 
+            {%endif%}
+
+            
+            <h3 id = "total">Dealer Total: {{ dealer_total }}</h3>
+        </p>
+    
+    
+  
+    <h1 id  = "player-dealer-titles">Player Cards</h1>
+        <p >
+        {% for card in player_cards %}
+            <img src="static/cards/{{ card[-1][-1] }}"/>
+        {% endfor %}
+        </p>
+
+        
+        <h3 id = "total">{{ player_total }}</h3>
+
+        <!-- <p >
+            <img id = "deck"  src = "static/cards/back.png"/>
+        </p> -->
+        
+
+        <form hx-post="/stand" hx-target="body">
+            <input  id = "button" type="submit" value="Stand"/>
+        </form>
+        <form hx-post="/hit" hx-target="body">
+            <input id = "button" type="submit" value="Hit"/>
+        </form>
+        <form hx-post="/restart" hx-target="body" >
+            <input id = "button" type="submit" value="Restart"/>
+        </form>
+
+        {%if playerStands == True%} 
+            <div class = "resultBox " >
+        {%else%}     
+            <div class = "resultBox hidden" >
+        {%endif%} 
+                <h1 id = "resultTitle">Result</h1>
+                <h2 id = "gameResult">  {{ gameResult}}</h2>
+            </div>
+        
+            
+</center>
+   
+
+{% endblock %} 

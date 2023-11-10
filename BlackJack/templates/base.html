@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <title>
+            {{ title }}
+        </title>
+
+        <style>
+            
+        </style>
+
+    </head>
+    <body>
+        <h3>{{ heading }}</h3>
+
+        {% block body %}
+        {% endblock %} 
+
+        <p id = "footer">{{ footer }}</p><br><br>
+        <!-- <p></p> -->
+    </body>
+</html>
