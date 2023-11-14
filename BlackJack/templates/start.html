@@ -6,7 +6,7 @@
 <center>
     <h1 id = title>Black Jack</h1>
 
-    <div id = "dealerUpdate">
+    <div id = "cardUpdate">
         <h1 id = "player-dealer-titles">Dealer Cards</h1>
             <p >
                 {%if playerStands == True%} 
@@ -18,19 +18,11 @@
                     <img src="{{hiddenCard}}"/> 
                 {%endif%}
 
-                {%if playerStands == True%} 
-                 <div class = "resultBox " >
-                {%else%}     
-                    <div class = "resultBox hidden" >
-                {%endif%} 
-                <h1 id = "resultTitle">Result</h1>
-                <h2 id = "gameResult">  {{ gameResult}}</h2>
-            </div>
                 <h3 id = "total">Dealer Total: {{ dealer_total }}</h3>
             </p>
-    </div>
+
     
-    <div id = "playerUpdate">
+
         <h1 id  = "player-dealer-titles">Player Cards</h1>
             <p >
             {% for card in player_cards %}
@@ -51,15 +43,12 @@
             </div>
     </div>
 
-        <!-- <p >
-            <img id = "deck"  src = "static/cards/back.png"/>
-        </p> -->
         
 
-        <form hx-post="/stand" hx-target ="#dealerUpdate" hx-select  = "#dealerUpdate" hx-swap = "outerHTML">
+        <form hx-post="/stand" hx-target ="#cardUpdate" hx-select  = "#cardUpdate" hx-swap = "outerHTML">
             <input  id = "button" type="submit" value="Stand"/>
         </form>
-        <form hx-post="/hit"  hx-target ="#playerUpdate"  hx-select = "#playerUpdate" hx-swap = "outerHTML" >
+        <form hx-post="/hit"  hx-target ="#cardUpdate"  hx-select = "#cardUpdate" hx-swap = "outerHTML" >
             <input id = "button" type="submit" value="Hit"/>
         </form>
         <form hx-post="/restart" hx-target="body" >
